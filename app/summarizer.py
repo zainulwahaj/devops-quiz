@@ -91,9 +91,12 @@ def summarize(text: str, keyword: str, max_sentences: int = 3) -> str:
 def _split_sentences(text: str) -> list[str]:
     rough_sentences = re.split(r"(?<=[.!?])\s+", text)
     sentences = []
+    seen = set()
     for sentence in rough_sentences:
         cleaned = sentence.strip()
-        if len(cleaned) >= 35:
+        key = re.sub(r"\W+", "", cleaned.lower())
+        if len(cleaned) >= 35 and key not in seen:
+            seen.add(key)
             sentences.append(cleaned)
     return sentences
 

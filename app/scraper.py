@@ -192,6 +192,7 @@ def _first_available(*names: str) -> str:
 
 def _clean_text(text: str) -> str:
     text = unescape(text)
+    text = re.sub(r"<[^>]+>", "", text)
     text = re.sub(r"[ \t]+", " ", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
