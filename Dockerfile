@@ -1,4 +1,5 @@
-FROM --platform=linux/amd64 selenium/standalone-chrome:latest
+ARG SELENIUM_PLATFORM=linux/amd64
+FROM --platform=$SELENIUM_PLATFORM selenium/standalone-chrome:latest
 
 USER root
 
